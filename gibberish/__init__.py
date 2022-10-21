@@ -7,8 +7,6 @@ from gibberish.dir import database_path
 
 __all__ = ('Gibberish', )
 
-random.seed(0)
-
 class Gibberish:
     def __init__(self, component_file=database_path('components.yaml'), seed=42):
         with open(component_file) as f:
