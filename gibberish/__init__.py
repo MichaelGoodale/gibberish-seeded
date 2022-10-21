@@ -15,21 +15,21 @@ class Gibberish:
             components = yaml.safe_load(f)
         self.random = random.Random(seed)
 
-        self.initial_consonants = list(set(string.ascii_lowercase) - set('aeiou')
+        self.initial_consonants = sorted(set(string.ascii_lowercase) - set('aeiou')
                                   # remove those easily confused with others
                                   - set('qxc')
                                   # add some crunchy clusters
                                   | set(sum(components['initials'], []))
                                   )
 
-        self.final_consonants = list(set(string.ascii_lowercase) - set('aeiou')
+        self.final_consonants = sorted(set(string.ascii_lowercase) - set('aeiou')
                                 # remove the confusables
                                 - set('qxcsj')
                                 # crunchy clusters
                                 | set(sum(components['finals'], []))
                                 )
 
-        self.vowels = list(set(sum(components['vowels'], []))) # "oo" because google
+        self.vowels = sorted(set(sum(components['vowels'], []))) # "oo" because google
 
     def generate_word(self, vowel_consonant_repeats=1, start_vowel=False, end_vowel=False):
         """Returns a random consonant-(vowel-consonant)*wc pseudo-word."""
